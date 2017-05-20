@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.Generic
 {
-	/*
+	/**
 	 * @class LeftRightControlManager
 	 * @brief When the user touches (or stops touching) the screen, invokes an event with the side touched.
 	 */

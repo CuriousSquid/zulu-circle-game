@@ -9,72 +9,73 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1741278147782022}
+  m_RootGameObject: {fileID: 1109117117093930}
   m_IsPrefabParent: 1
---- !u!1 &1741278147782022
+--- !u!1 &1109117117093930
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4407325645415008}
-  - component: {fileID: 212600510104829096}
-  - component: {fileID: 114472949947515466}
-  - component: {fileID: 61699724714382836}
+  - component: {fileID: 4885188020958238}
+  - component: {fileID: 212288250610729854}
+  - component: {fileID: 114068489407391218}
   m_Layer: 0
-  m_Name: OrbitalShield
-  m_TagString: Untagged
+  m_Name: DefendGoal
+  m_TagString: DefendGoal
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4407325645415008
+--- !u!4 &4885188020958238
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1741278147782022}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_GameObject: {fileID: 1109117117093930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61699724714382836
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1741278147782022}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
---- !u!114 &114472949947515466
+--- !u!114 &114068489407391218
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1741278147782022}
+  m_GameObject: {fileID: 1109117117093930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72260409fdf0dc14ba174ad947f69a3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b3062c7ebc19d04cac0815dade7ea5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  speed: 5
---- !u!212 &212600510104829096
+  maxHealth: 10
+  destroyOnZeroHealth: 0
+  Events:
+    OnDeath:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Assets.Scripts.Generic.HealthEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    OnDamage:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Assets.Scripts.Generic.HealthEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    OnHeal:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Assets.Scripts.Generic.HealthEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+--- !u!212 &212288250610729854
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1741278147782022}
+  m_GameObject: {fileID: 1109117117093930}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -101,6 +102,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a56a01376c4b7be4a81e7d4ae710e876, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.07586192, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
