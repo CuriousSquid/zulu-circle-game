@@ -31,7 +31,10 @@ namespace Assets.Scripts.Generic
 		[Tooltip("If true, object without Health components will be destoryed on contact. Otherwise, they will be ignored.")]
 		[SerializeField] private bool destroyObjectsWithoutHealth;
 
-		private Health ourHealth;
+        [Tooltip("Fooest of the Bars")]
+        [SerializeField] private AudioClip collideSfx;
+
+        private Health ourHealth;
 
 		#endregion
 
@@ -62,7 +65,7 @@ namespace Assets.Scripts.Generic
 		}
 
 		#endregion
-
+        
 		/**
 		 * @brief Hurts the other object if it is vulnerable to us.
 		 * @param collider The thing we collided with.
@@ -71,8 +74,10 @@ namespace Assets.Scripts.Generic
 		{
 			// Is the thing we collided with vulnerable to us?
 			if (vulnerableTags.Contains(collider.tag))
-			{
-				var colliderHealth = collider.gameObject.GetComponent<Health>();
+			{/*
+                if (collideSfx.loadState == AudioDataLoadState.Loaded)
+                    AudioSource.PlayClipAtPoint(collideSfx, new Vector3(0, 0, -9));*/
+                var colliderHealth = collider.gameObject.GetComponent<Health>();
 				// If the thing we collided with doesn't have a Health component...
 				if (null == colliderHealth)
 				{
