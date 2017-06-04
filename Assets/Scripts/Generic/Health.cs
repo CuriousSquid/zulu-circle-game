@@ -70,7 +70,7 @@ namespace Assets.Scripts.Generic
 		 */
 		public bool IsDead
 		{
-			get { return (0 <= currentHealth); }
+			get { return (0 >= currentHealth); }
 		}
 
 		/**
