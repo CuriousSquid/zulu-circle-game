@@ -11,22 +11,19 @@ using System.Collections.Generic;
 namespace Assets.Scripts.Generic
 {
     /*
-     * @class SoundEFX
+     * @class UISoundEFX
      * @brief What does this class do?
      */
-    public class SoundEFX : MonoBehaviour {
+    public class UISoundEFX : MonoBehaviour {
 
         #region Variables
         #pragma warning disable 0168 // variable declared but not used.
         [Tooltip("Add Tool tip!")]
         [SerializeField]
-        private AudioClip spawn;
+        private AudioClip touch;
         [Tooltip("Add Tool tip!")]
         [SerializeField]
-        private AudioClip hurt;
-        [Tooltip("Add Tool tip!")]
-        [SerializeField]
-        private AudioClip die;
+        private AudioClip back;
 
         #endregion
 
@@ -51,14 +48,11 @@ namespace Assets.Scripts.Generic
             return clip.loadState == AudioDataLoadState.Loaded;
         }
 
-        public AudioClip getSpawn() {
-            return spawn;
+        public AudioClip getTouch() {
+            return touch;
         }
-        public AudioClip getDie() {
-            return die;
-        }
-        public AudioClip getHurt() {
-            return hurt;
+        public AudioClip getBack() {
+            return back;
         }
     }
 }
