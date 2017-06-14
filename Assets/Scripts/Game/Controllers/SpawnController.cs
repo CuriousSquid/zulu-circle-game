@@ -4,7 +4,9 @@
 
 using JetBrains.Annotations;
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Assets.Scripts.Game.Controllers
 {
@@ -17,7 +19,9 @@ namespace Assets.Scripts.Game.Controllers
 		#region Variables
 
 		[SerializeField]
-		private List<Generic.Spawner> teqwe;
+		private List<Generic.Spawning.SpawnerBehaviour> behaviours;
+
+		private List<GameObject> spawners;
 		
 		#endregion
 		
@@ -25,14 +29,37 @@ namespace Assets.Scripts.Game.Controllers
 		
 		[UsedImplicitly]
 		private void Start () {
-			
+			spawners = new List<GameObject>();
+			StartCoroutine(Begin());
 		}
-		
-		[UsedImplicitly]
-		private void Update () {
-			
-		}
-		
+
 		#endregion
+
+		private IEnumerator Begin() {
+			yield return new WaitForSeconds(0.0f);
+
+			// Find all spawners.
+			spawners.AddRange(GameObject.FindGameObjectsWithTag("Spawner"));
+			Debug.Log($"{name}: Found {spawners.Count} spawners.");
+
+			// Remove any GameObject that don't have the Spawner component.
+			spawners.RemoveAll(DoesObjectLackSpawnerComponent);
+
+			while (true) {
+				yield return new WaitForSeconds(5.0f);
+				foreach (GameObject spawner in spawners) {
+					spawner.GetComponent<Generic.Spawner>().SpawnBehaviour =
+						behaviours[UnityEngine.Random.Range(0, behaviours.Count - 1)];
+				}
+			}
+		}
+
+		private static bool DoesObjectLackSpawnerComponent(GameObject spawner) {
+			bool invalid = null == spawner.GetComponent<Generic.Spawner>();
+			if (invalid) {
+				Debug.LogWarning($"{spawner.name} is tagged as a Spawner, but lacks the component!");
+			}
+			return invalid;
+		}
 	}
 }
