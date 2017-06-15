@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Copyright (c) Josh Mooney
  * http://github.com/CuriousSquid
  */
@@ -10,10 +10,11 @@ using System.Collections.Generic;
 
 public class AudioController : MonoBehaviour {
 
-    #region Variables
-    [Tooltip("Add Tool tip!")]
+	#region Variables
+	#pragma warning disable 0649 // variable not assigned
+	[Tooltip("The audio source which will play the sound effects.")]
     [SerializeField] private AudioSource efxSource;         //Drag a reference to the audio source which will play the sound effects.
-    [Tooltip("Add Tool tip!")]
+    [Tooltip("The audio source that will play the game music.")]
     [SerializeField] private AudioSource musicSource;       //Drag a reference to the audio source which will play the music.
     public static AudioController instance = null;          //Allows other scripts to call functions from SoundManager.             
     private float lowPitchRange = .95f;                     //The lowest a sound effect will be randomly pitched.
@@ -31,11 +32,6 @@ public class AudioController : MonoBehaviour {
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-    }
-        
-    [UsedImplicitly]
-    private void Update () {
-            
     }
         
     #endregion

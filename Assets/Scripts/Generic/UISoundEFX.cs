@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Copyright (c) Josh Mooney
  * http://github.com/CuriousSquid
  */
@@ -16,29 +16,14 @@ namespace Assets.Scripts.Generic
      */
     public class UISoundEFX : MonoBehaviour {
 
-        #region Variables
-        #pragma warning disable 0168 // variable declared but not used.
-        [Tooltip("Add Tool tip!")]
+		#region Variables
+		#pragma warning disable 0168 // variable declared but not used.
+		#pragma warning disable 0649 // variable not assigned
         [SerializeField]
         private AudioClip touch;
-        [Tooltip("Add Tool tip!")]
         [SerializeField]
         private AudioClip back;
 
-        #endregion
-
-        #region Unity Methods
-
-        [UsedImplicitly]
-        private void Start () {
-            
-        }
-        
-        [UsedImplicitly]
-        private void Update () {
-            
-        }
-        
         #endregion
 
         public bool hasSound(AudioClip clip) {
