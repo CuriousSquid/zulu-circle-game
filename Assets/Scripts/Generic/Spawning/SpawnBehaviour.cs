@@ -25,27 +25,25 @@ namespace Assets.Scripts.Generic.Spawning
 	 * @brief Basic class to instanciate GameObjects.
 	 */
 	public abstract class SpawnerBehaviour : ScriptableObject {
-		
+
 
 		#region Variables
 
-		public enum State
-		{
-			STOPPED,	// Spawner is not running and has not reached max spawn count.
+		public enum State {
+			STOPPED,    // Spawner is not running and has not reached max spawn count.
 			RUNNING,
-			FINISHED	// Spawner has reached max spawn count.
+			FINISHED    // Spawner has reached max spawn count.
 		}
 		private State _currentState;
 		public State CurrentState {
-			get
-			{
+			get {
 				return _currentState;
 			}
 		}
 
 		[Tooltip("The object to be spawned.")]
 		[SerializeField] protected GameObject thingToSpawn;
-		
+
 		[Tooltip("Maximum time (in seconds) between spawns.")]
 		[SerializeField] protected float minInterval = 1.0f;
 
@@ -55,12 +53,14 @@ namespace Assets.Scripts.Generic.Spawning
 		[Tooltip("Amount of things to spawn (0 = No Limit).")]
 		[SerializeField] protected int numberToSpawn;
 
-		protected int spawnCount;	// Number of things spawned so far.
+		protected int spawnCount;   // Number of things spawned so far.
 
 		public SpawnEvent OnSpawn;
 		public SpawnerStateEvent OnStateChange;
 
 		public Transform Transform { get; set; }
+
+		private GameObject parent;
 
 		#endregion
 
@@ -78,6 +78,7 @@ namespace Assets.Scripts.Generic.Spawning
 		#endregion
 
 		public IEnumerator Run() {
+			parent = GameObject.FindGameObjectWithTag("DynamicObjectsContainer");
 			SetState(State.RUNNING);
 			do
 			{
@@ -94,7 +95,7 @@ namespace Assets.Scripts.Generic.Spawning
 
 		protected GameObject Instantiate(GameObject thingToSpawn, Vector3 position, Quaternion rotation) {
 			++spawnCount;
-			GameObject spawned = UnityEngine.Object.Instantiate(thingToSpawn, Transform.position, rotation);
+			GameObject spawned = UnityEngine.Object.Instantiate(thingToSpawn, position, rotation, parent.transform);
 			OnSpawn?.Invoke(spawned);
 			return spawned;
 		}

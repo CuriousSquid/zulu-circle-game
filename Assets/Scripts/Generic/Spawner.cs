@@ -18,6 +18,7 @@ namespace Assets.Scripts.Generic
 		[SerializeField]
 		private Spawning.SpawnerBehaviour _spawnBehaviour;
 		public Spawning.SpawnerBehaviour SpawnBehaviour {
+			get { return _spawnBehaviour; }
 			set {
 				_spawnBehaviour.Stop();
 				_spawnBehaviour = value;
@@ -32,8 +33,7 @@ namespace Assets.Scripts.Generic
 
 		[UsedImplicitly]
 		void Start() {
-			_spawnBehaviour.Transform = transform;
-			StartCoroutine(_spawnBehaviour.Run());
+			SpawnBehaviour = _spawnBehaviour;
 		}
 
 		[UsedImplicitly]

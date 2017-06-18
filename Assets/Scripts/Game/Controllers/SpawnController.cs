@@ -47,9 +47,10 @@ namespace Assets.Scripts.Game.Controllers
 
 			while (true) {
 				yield return new WaitForSeconds(5.0f);
-				foreach (GameObject spawner in spawners) {
-					spawner.GetComponent<Generic.Spawner>().SpawnBehaviour =
-						behaviours[UnityEngine.Random.Range(0, behaviours.Count - 1)];
+				foreach (GameObject gO in spawners) {
+					var spawner = gO.GetComponent<Generic.Spawner>();
+					spawner.SpawnBehaviour = Instantiate(behaviours[UnityEngine.Random.Range(0, behaviours.Count)]);
+					// TODO: Use an object pool. Avoid repeated instantiation.
 				}
 			}
 		}

@@ -11,9 +11,9 @@ namespace Assets.Scripts.Generic.Spawning {
 	public class TriSpawner : SpawnerBehaviour {
 		protected override IEnumerator DoSpawnBehaviour() {
 			yield return new WaitForSeconds(UnityEngine.Random.Range(minInterval, maxInterval));
-			Instantiate(thingToSpawn, Transform.position, Quaternion.identity);
-			Instantiate(thingToSpawn, Transform.position, Quaternion.identity);
-			Instantiate(thingToSpawn, Transform.position, Quaternion.identity);
+			Instantiate(thingToSpawn, Transform.position, Transform.rotation);
+			Instantiate(thingToSpawn, Transform.position, Transform.rotation);
+			Instantiate(thingToSpawn, Transform.position, Transform.rotation);
 		}
 	}
 }

@@ -25,9 +25,10 @@ namespace Assets.Scripts.Generic
 	 */
 	public class Health : MonoBehaviour {
 
-		#region Variables
-		
-		[SerializeField] private int maxHealth;
+        #region Variables
+        SoundEFX soundEfx;
+
+        [SerializeField] private int maxHealth;
 
 		private int currentHealth;
 
@@ -50,7 +51,8 @@ namespace Assets.Scripts.Generic
 		[UsedImplicitly]
 		private void Start()
 		{
-			currentHealth = maxHealth;
+            soundEfx = GetComponent<SoundEFX>();
+            currentHealth = maxHealth;
 			if (destroyOnZeroHealth)
 			{
 				Events.OnDeath.AddListener(DestroySelf);
@@ -98,6 +100,9 @@ namespace Assets.Scripts.Generic
 			Events.OnDamage.Invoke(this);
 			if (IsDead)
 			{
+                if (soundEfx.hasSound(soundEfx.getDie()))
+                    AudioController.instance.PlaySingle(soundEfx.getDie());
+         
 				// This damage killed us: raise the event.
 				Events.OnDeath.Invoke(this);
 				return true;
