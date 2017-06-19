@@ -30,8 +30,6 @@ public class AudioController : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
     }
         
     #endregion

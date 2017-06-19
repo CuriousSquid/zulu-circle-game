@@ -128,5 +128,15 @@ namespace Assets.Scripts.Generic
 			Events.OnHeal.Invoke(this);
 			return true;
 		}
+
+		/**
+		 * @brief If not already dead, sets health to 0 and raises OnDeath event.
+		 */
+		public void Kill() {
+			if (!IsDead) {
+				currentHealth = 0;
+				Events.OnDeath.Invoke(this);
+			}
+		}
 	}
 }

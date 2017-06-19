@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4172663736605602}
+  - component: {fileID: 114639917481746700}
   - component: {fileID: 82914577126185466}
   - component: {fileID: 82563221652000430}
-  - component: {fileID: 114639917481746700}
   m_Layer: 0
   m_Name: AudioController
   m_TagString: Untagged
@@ -51,11 +51,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5b1e31a1ced252b4284652f34fef59a8, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.075
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -131,11 +131,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 45a8460b99437054f89781040604551a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b1e31a1ced252b4284652f34fef59a8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.9675016
-  Loop: 0
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -213,5 +213,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9da67fcf5e7f04fba4f81fe67d0b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 82914577126185466}
-  musicSource: {fileID: 82563221652000430}
+  efxSource: {fileID: 82563221652000430}
+  musicSource: {fileID: 82914577126185466}
