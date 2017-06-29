@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9e1d1889924397c4dae572bbf943cf45
+timeCreated: 1498775020
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: My Heart
+  fontNames:
+  - My Heart
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
