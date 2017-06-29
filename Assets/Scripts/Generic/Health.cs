@@ -25,9 +25,10 @@ namespace Assets.Scripts.Generic
 	 */
 	public class Health : MonoBehaviour {
 
-		#region Variables
-		
-		[SerializeField] private int maxHealth;
+        #region Variables
+        SoundEFX soundEfx;
+
+        [SerializeField] private int maxHealth;
 
 		private int currentHealth;
 
@@ -50,7 +51,8 @@ namespace Assets.Scripts.Generic
 		[UsedImplicitly]
 		private void Start()
 		{
-			currentHealth = maxHealth;
+            soundEfx = GetComponent<SoundEFX>();
+            currentHealth = maxHealth;
 			if (destroyOnZeroHealth)
 			{
 				Events.OnDeath.AddListener(DestroySelf);
@@ -70,7 +72,7 @@ namespace Assets.Scripts.Generic
 		 */
 		public bool IsDead
 		{
-			get { return (0 <= currentHealth); }
+			get { return (0 >= currentHealth); }
 		}
 
 		/**
@@ -98,6 +100,9 @@ namespace Assets.Scripts.Generic
 			Events.OnDamage.Invoke(this);
 			if (IsDead)
 			{
+                if (soundEfx.hasSound(soundEfx.getDie()))
+                    AudioController.instance.PlaySingle(soundEfx.getDie());
+         
 				// This damage killed us: raise the event.
 				Events.OnDeath.Invoke(this);
 				return true;
@@ -122,6 +127,16 @@ namespace Assets.Scripts.Generic
 			currentHealth = Math.Min(currentHealth + Math.Abs(healing), maxHealth);
 			Events.OnHeal.Invoke(this);
 			return true;
+		}
+
+		/**
+		 * @brief If not already dead, sets health to 0 and raises OnDeath event.
+		 */
+		public void Kill() {
+			if (!IsDead) {
+				currentHealth = 0;
+				Events.OnDeath.Invoke(this);
+			}
 		}
 	}
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - DefendGoal
+  - Spawner
+  - DynamicObjectsContainer
   layers:
   - Default
   - TransparentFX

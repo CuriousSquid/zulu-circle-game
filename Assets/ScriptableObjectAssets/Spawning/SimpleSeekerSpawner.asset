@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7565746ba57ac6145a2b8945e356fa6a, type: 3}
+  m_Name: SimpleSeekerSpawner
+  m_EditorClassIdentifier: 
+  thingToSpawn: {fileID: 1220417753141130, guid: c6fa82696fdccc84d8dd062bcfc01196,
+    type: 2}
+  minInterval: 1
+  maxInterval: 2
+  numberToSpawn: 2147483647
+  OnSpawn:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Assets.Scripts.Generic.Spawning.SpawnEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Assets.Scripts.Generic.Spawning.SpawnerStateEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
