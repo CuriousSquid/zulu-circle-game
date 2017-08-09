@@ -7,6 +7,7 @@
 
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Generic
@@ -31,8 +32,9 @@ namespace Assets.Scripts.Generic
 		[Tooltip("If true, object without Health components will be destoryed on contact. Otherwise, they will be ignored.")]
 		[SerializeField] private bool destroyObjectsWithoutHealth;
 
-        [Tooltip("Fooest of the Bars")]
         [SerializeField] private AudioClip collideSfx;
+
+		public UnityEvent OnKillOther;
 
         private Health ourHealth;
 
@@ -89,12 +91,14 @@ namespace Assets.Scripts.Generic
 				} else
 				{
 					// It's vulnerable to us and has a Health component, so we're gonna hurt it!
-					colliderHealth.Hurt(damage);
+					if (colliderHealth.Hurt(damage)) {
+						OnKillOther?.Invoke();
+					}
 
 					// Do we hit with recoil?
 					if (0 < recoilPercentage)
 					{
-						ourHealth.Hurt(damage * recoilPercentage);
+						ourHealth.Hurt(Mathf.RoundToInt(damage * recoilPercentage * 0.01f));
 					}
 				}
 			}

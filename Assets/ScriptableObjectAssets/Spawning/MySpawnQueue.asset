@@ -14,6 +14,6 @@ MonoBehaviour:
   queue:
   - behaviour: {fileID: 11400000, guid: 21f657a2b93706145a3eeb3746589a19, type: 2}
     duration: 6
-  - behaviour: {fileID: 11400000, guid: 1f9aa5442d7062e47a576818eb7ebee9, type: 2}
+  - behaviour: {fileID: 11400000, guid: 04438f70f0afb4b4a9f6d363061baf70, type: 2}
     duration: 4
   loop: 1

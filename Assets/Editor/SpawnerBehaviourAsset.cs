@@ -12,4 +12,10 @@ public class SpawnerBehaviourAsset {
 	public static void CreateTriSpawner() {
 		ScriptableObjectUtility.CreateAsset<TriSpawner>();
 	}
+
+    [MenuItem("Assets/Create/SpawnerBehaviour/Line")]
+    public static void CreateLineSpawner()
+    {
+        ScriptableObjectUtility.CreateAsset<LineSpawner>();
+    }
 }
