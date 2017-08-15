@@ -7,18 +7,23 @@ using JetBrains.Annotations;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using UnityEngine.Events;
 
-namespace insertNamespaceHere
-{
+namespace Assets.Scripts.Game.Controllers {
     /*
      * @class MainMenuController
      * @brief What does this class do?
      */
     public class MainMenuController : MonoBehaviour {
 
+        [Serializable]
+        public class MenuEvent : UnityEvent<bool> { }
+
         #region Variables
 
-        private bool mainMenuActive;
+        private bool mainMenuActive = true;
+        public MenuEvent OnMennuChanged;
 
         #endregion
 
@@ -26,9 +31,8 @@ namespace insertNamespaceHere
 
         [UsedImplicitly]
         private void Start () {
-            //Set the Main Menu to active 
-
             //Toggle off the start of the game
+
         }
         
         [UsedImplicitly]
@@ -41,18 +45,49 @@ namespace insertNamespaceHere
         public bool onMainMenu {
             get { return mainMenuActive; }
             set {
-                // ?
+                if (onMainMenu != value) {
+                    mainMenuActive = value;
+                    Time.timeScale = onMainMenu ? 0 : 1;
+                    OnMennuChanged?.Invoke(onMainMenu);
+                }
             }
         }
 
         public void ToggleMainMenu() {
             mainMenuActive = !mainMenuActive;
 
+            GameObject spawner;
+            GameObject defendGoal;
+            GameObject gameObj;
+            //GameObject gameObj;
             //Toggle on Pause button.
+            /*gameObj = GameObject.FindGameObjectWithTag("PauseBrn");
+            gameObj.SetActive(!mainMenuActive);*/
 
-            //Start Game animation
+            //Toggle Game animation
+            /*gameObj = GameObject.Find("/DefendGoal");
+            gameObj = gameObj.transform.GetChild(0).gameObject;
+            gameObj.SetActive(!mainMenuActive);*/
 
-            //Hide Main Menu
+            //Toggle Spawners
+
+            gameObj = GameObject.Find("/Spawners");
+            gameObj = GameObject.Find("Spawners");
+            gameObj = GameObject.FindGameObjectWithTag("Spawner");
+            /*spawner = GameObject.Find("Spawners");
+            spawner = GameObject.FindGameObjectWithTag("Spawner");
+            spawner.SetActive(!mainMenuActive);*/
+
+            //Toggle Main Menu
+            //This is handled by the button onClick function
+        }
+
+        public void returnToMenu() {
+            mainMenuActive = true;
+        }
+
+        public void leaveMenu() {
+            mainMenuActive = false;
         }
 
         public void ToggleOptions() {

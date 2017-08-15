@@ -8,6 +8,8 @@ TagManager:
   - DefendGoal
   - Spawner
   - DynamicObjectsContainer
+  - MainMenu
+  - PauseBtn
   layers:
   - Default
   - TransparentFX
