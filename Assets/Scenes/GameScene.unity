@@ -7569,6 +7569,16 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 82914577126185466, guid: 51f0cc7d9f542874dab2a1390022a5f8,
+        type: 2}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82563221652000430, guid: 51f0cc7d9f542874dab2a1390022a5f8,
+        type: 2}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51f0cc7d9f542874dab2a1390022a5f8, type: 2}
   m_IsPrefabParent: 0
@@ -7663,6 +7673,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46980edfa370b4b4891d586632ff3364, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &904907229 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1741278147782022, guid: 46980edfa370b4b4891d586632ff3364,
+    type: 2}
+  m_PrefabInternal: {fileID: 691402168}
 --- !u!1 &924036110
 GameObject:
   m_ObjectHideFlags: 0
@@ -8570,7 +8585,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 209248971}
         m_MethodName: SetActive
         m_Mode: 6
@@ -8581,7 +8596,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 345846448}
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -8636,6 +8651,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 904907229}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -8729,7 +8755,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1093633053
+  randomSeed: -1728094841
   InitialModule:
     serializedVersion: 3
     enabled: 1
