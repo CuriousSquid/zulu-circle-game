@@ -24,7 +24,7 @@ namespace Assets.Scripts.Game.Controllers
 		#region Variables
 
 		private bool isCurrentlyPaused;
-
+  
 		public PauseEvent OnPauseChanged;
 		
 		#endregion
