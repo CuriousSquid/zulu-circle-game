@@ -25,6 +25,10 @@ namespace Assets.Scripts.Generic
 		private void Start () {
 			sprite = GetComponent<SpriteRenderer>();
 			particles = GetComponent<ParticleSystem>();
+            if (null == particles)
+            {
+                particles = GetComponentInChildren<ParticleSystem>();
+            }
 			RandomizeColour();
 		}
 		

@@ -100,7 +100,7 @@ namespace Assets.Scripts.Generic
 			Events.OnDamage.Invoke(this);
 			if (IsDead)
 			{
-                if (soundEfx.hasSound(soundEfx.getDie()))
+                if (null != soundEfx && soundEfx.hasSound(soundEfx.getDie()))
                     AudioController.instance.PlaySingle(soundEfx.getDie());
          
 				// This damage killed us: raise the event.

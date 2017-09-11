@@ -7,60 +7,62 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using Assets.Scripts.Generic;
 
 namespace Assets.Scripts.Game.Controllers
 {
 	/*
 	 * @class SpawnController
-	 * @brief What does this class do?
+	 * @brief 
 	 */
 	public class SpawnController : MonoBehaviour {
+
+		[Serializable]
+		public class SpawnerArgs {
+			[Tooltip("The spawner object to instanciate (Invalid gameObjects will be ignored).")]
+			public GameObject spawnerPrefab;
+			[Tooltip("The position at which to instanciate the prefab.")]
+			public Vector3 spawnPosition;
+			[Tooltip("How long, in seconds, before the instanciated spawner is destroyed (0 == forever).")]
+			public int timeToLive;
+			[Tooltip("How long, in seconds, to wait before instanciating the prefab.")]
+			public int delay;
+		}
 
 		#region Variables
 
 		[SerializeField]
-		private List<Generic.Spawning.SpawnerBehaviour> behaviours;
+		private List<SpawnerArgs> spawnerQueue;
 
-		private List<GameObject> spawners;
-		
 		#endregion
-		
+
 		#region Unity Methods
-		
+
 		[UsedImplicitly]
-		private void Start () {
-			spawners = new List<GameObject>();
-			StartCoroutine(Begin());
+		private void Start() {
+			StartCoroutine(Run());
 		}
 
-		#endregion
+		private IEnumerator Run() {
+			foreach (SpawnerArgs entry in spawnerQueue) {
+				if(null == entry.spawnerPrefab?.GetComponent<Spawner>()) {
+					// Remove the entry if the prefab is not a spawner
+					Debug.LogWarning($"{name}: A SpawnerArgs item has a non-spawner prefab assigned! (Ignoring)");
+					spawnerQueue.Remove(entry);
+				} else {
+					yield return new WaitForSeconds(entry.delay);
+					// Create the new object as our child.
+					GameObject newSpawner = Instantiate(entry.spawnerPrefab, entry.spawnPosition, Quaternion.identity, transform);
 
-		private IEnumerator Begin() {
-			yield return new WaitForSeconds(0.0f);
+					if (0 < entry.timeToLive) {
+						// Destroy at end of lifetime
+						Destroy(newSpawner, entry.timeToLive);
+					}
 
-			// Find all spawners.
-			spawners.AddRange(GameObject.FindGameObjectsWithTag("Spawner"));
-			Debug.Log($"{name}: Found {spawners.Count} spawners.");
-
-			// Remove any GameObject that don't have the Spawner component.
-			spawners.RemoveAll(DoesObjectLackSpawnerComponent);
-
-			while (true) {
-				yield return new WaitForSeconds(5.0f);
-				foreach (GameObject gO in spawners) {
-					var spawner = gO.GetComponent<Generic.Spawner>();
-					spawner.SpawnBehaviour = Instantiate(behaviours[UnityEngine.Random.Range(0, behaviours.Count)]);
-					// TODO: Use an object pool. Avoid repeated instantiation.
 				}
 			}
 		}
 
-		private static bool DoesObjectLackSpawnerComponent(GameObject spawner) {
-			bool invalid = null == spawner.GetComponent<Generic.Spawner>();
-			if (invalid) {
-				Debug.LogWarning($"{spawner.name} is tagged as a Spawner, but lacks the component!");
-			}
-			return invalid;
-		}
+		#endregion
 	}
 }

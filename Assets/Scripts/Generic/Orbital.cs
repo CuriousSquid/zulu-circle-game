@@ -36,21 +36,13 @@ namespace Assets.Scripts.Generic
         #region Unity Methods
 
 		/**
-		 * @brief Sets the origin of rotation to the parent, if we have one.
-		 */
-        [UsedImplicitly]
-        private void Start ()
-        {
-            _origin = (null == transform.parent) ? Vector3.forward : transform.parent.position;
-        }
-
-		/**
 		 * @brief Executes the rotation around the origin.
 		 */
         [UsedImplicitly]
         private void Update () {
+			_origin = (null == transform.parent) ? Vector3.forward : transform.parent.position;
 			// TODO: Make the hardcoded 10.0f a global constant and use for all speed calculations for uniformity.
-		    transform.RotateAround(_origin, Vector3.forward, 10.0f * speed * (float)direction * Time.deltaTime);
+			transform.RotateAround(_origin, Vector3.forward, 10.0f * speed * (float)direction * Time.deltaTime);
 		}
 
 		#endregion
