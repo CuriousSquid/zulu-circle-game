@@ -39,9 +39,17 @@ namespace Assets.Scripts.Game.Controllers
 		#region Unity Methods
 
 		[UsedImplicitly]
-		private void Start() {
+		private void OnEnable() {
 			StartCoroutine(Run());
 		}
+
+		[UsedImplicitly]
+		private void OnDisable() {
+			StopAllCoroutines();
+			DestroyAllChildren();
+		}
+
+		#endregion
 
 		private IEnumerator Run() {
 			foreach (SpawnerArgs entry in spawnerQueue) {
@@ -63,6 +71,10 @@ namespace Assets.Scripts.Game.Controllers
 			}
 		}
 
-		#endregion
+		private void DestroyAllChildren() {
+			for (int i = transform.childCount - 1; i >= 0; i--) {
+				Destroy(transform.GetChild(i).gameObject);
+			}
+		}
 	}
 }
